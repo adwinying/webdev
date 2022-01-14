@@ -20,6 +20,26 @@ services:
       timeout: 5s
 
 
+  mysql8:
+    image: mysql:8.0
+    ports:
+      - '${MYSQL8_PORT:-3307}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+      MYSQL_DATABASE: '${DB_DATABASE:-db}'
+      MYSQL_USER: '${DB_USERNAME:-sail}'
+      MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - 'webdev-mysql8:/var/lib/mysql8'
+    networks:
+      - webdev
+    healthcheck:
+      test: ["CMD", "mysql8admin", "ping", "-p${DB_PASSWORD:-password}"]
+      retries: 3
+      timeout: 5s
+
+
   pgsql:
     image: postgres:13
     ports:

@@ -9,6 +9,7 @@ A set of commonly used services in web development all bundled in a `docker-comp
 # Available Services
 
 - `mysql`
+- `mysql8`
 - `pgsql`
 - `redis`
 - `meilisearch`
