@@ -101,6 +101,8 @@ networks:
 volumes:
   webdev-mysql:
     driver: local
+  webdev-mysql8:
+    driver: local
   webdev-pgsql:
     driver: local
   webdev-redis:
