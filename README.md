@@ -14,6 +14,7 @@ A set of commonly used services in web development all bundled in a `docker-comp
 - `redis`
 - `meilisearch`
 - `mailhog`
+- `minio`
 
 # Usage
 

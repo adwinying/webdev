@@ -92,6 +92,21 @@ services:
       - webdev
 
 
+  minio:
+    image: 'minio/minio:latest'
+    environment:
+      MINIO_ROOT_USER: '${MINIO_ROOT_USER:-root}'
+      MINIO_ROOT_PASSWORD: '${MINIO_ROOT_PASSWORD:-password}'
+    ports:
+      - '${MINIO_PORT:-9000}:9000'
+      - '${MINIO_DASHBOARD_PORT:-9001}:9001'
+    volumes:
+      - 'webdev-minio:/data'
+    networks:
+      - webdev
+    command: server /data  --console-address ":${MINIO_DASHBOARD_PORT:-9001}"
+
+
 networks:
   webdev:
     name: webdev
@@ -108,4 +123,6 @@ volumes:
   webdev-redis:
     driver: local
   webdev-meilisearch:
+    driver: local
+  webdev-minio:
     driver: local
